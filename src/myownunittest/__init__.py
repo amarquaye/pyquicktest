@@ -79,6 +79,13 @@ class TestCase:
                 message = f"Assertion failed: {list1} is not the same as {list2}"
             raise AssertionError(message)
         
+    def assertListNotEqual(self, list1:list, list2:list, message=None):
+        """Confirm the inequality of two lists"""
+        if list1 == list2:
+            if message is None:
+                message = f"Assertion failed: {list1} is the same as {list2}"
+            raise AssertionError(message)
+        
     def assertSetEqual(self, set1:set, set2:set, message=None):
         """Confirm the equality of two sets"""
         if set1 != set2:
