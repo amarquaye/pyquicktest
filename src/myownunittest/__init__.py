@@ -3,7 +3,6 @@ Python unit testing library by Jesse Amarquaye.
 Simple project to mimic unittest; a builtin python testing framework.
 """
 import os
-import timeit
 
 
 # Define a basic test case class
@@ -44,22 +43,42 @@ class TestCase:
     
   
     # Custom assertion method for equality
-    def assert_equal(self, actual, expected, message=None):
+    def assertEqual(self, actual, expected, message=None):
+        """Confirm the equality of two statements"""
         # Raise AssertionError if actual is not equal to expected
         if actual != expected:
             # If no custom error message is provided, create a default one
             if message is None:
                 message = f"Expected {expected}, but got {actual}"
             raise AssertionError(message)
+        
+    # Custom assertion method for inequality
+    def assertNotEqual(self, actual, expected, message=None):
+        """Confirm the inequality of two statements"""
+        # Raise AssertionError if actual is equal to expected
+        if actual == expected:
+            # If no custom error message is provided, create a default one
+            if message is None:
+                message = f"{expected} and {actual} are equal"
+            raise AssertionError(message)
 
     # Custom assertion method for truthiness
-    def assert_true(self, expression, message=None):
+    def assertTrue(self, expression, message=None):
+        """Confirm whether a given statement is True"""
         # Raise AssertionError if expression is not true
         if not expression:
             # If no custom error message is provided, create a default one
             if message is None:
                 message = "Assertion failed: expression is not true"
             raise AssertionError(message)
+        
+    def assertListEqual(self, list1:list, list2:list, message=None):
+        """Confirm the equality of two lists"""
+        if list1 != list2:
+            if message is None:
+                message = f"Assertion failed: {list1} is not the same as {list2}"
+            raise AssertionError(message)
+
 
 
 # Example usage:
@@ -69,17 +88,17 @@ class TestCase:
 #     # Define a test method for addition
 #     def test_addition(self):
 #         # Use the custom assert_equal method to check if 1 + 1 equals 2
-#         self.assert_equal(1 + 1, 2)
+#         self.assertEqual(1 + 1, 2)
 
 #     # Define a test method for subtraction
 #     def test_subtraction(self):
 #         # Use the custom assert_equal method to check if 3 - 1 equals 2
-#         self.assert_equal(3 - 1, 2)
+#         self.assertEqual(3 - 1, 2)
 
 #     # Define a test method that intentionally fails
 #     def test_failure(self):
 #         # Use the custom assert_equal method to check if 2 * 2 equals 5 (intentional failure)
-#         self.assert_equal(2 * 2, 5)
+#         self.assertEqual(2 * 2, 5)
 
 # # Run the tests if the script is executed
 # if __name__ == '__main__':
