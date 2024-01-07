@@ -2,6 +2,9 @@
 Python unit testing library by Jesse Amarquaye.
 Simple project to mimic unittest; a builtin python testing framework.
 """
+import os
+import timeit
+
 
 # Define a basic test case class
 class TestCase:
@@ -31,9 +34,15 @@ class TestCase:
                 results['failed'] += 1
                 print(f"{test_method}: Failed - {e}")
 
+        col_size = os.get_terminal_size().columns
+        done = " Completed "
+        print(f"\n{done:#^{col_size}}")
+        
         # Print overall test results
         print(f"\nResults: {results['passed']}/{results['total']} tests passed")
 
+    
+  
     # Custom assertion method for equality
     def assert_equal(self, actual, expected, message=None):
         # Raise AssertionError if actual is not equal to expected
@@ -56,7 +65,7 @@ class TestCase:
 # Example usage:
 
 # # Define a test case class that inherits from SimpleTestCase
-# class MyTests(SimpleTestCase):
+# class MyTests(TestCase):
 #     # Define a test method for addition
 #     def test_addition(self):
 #         # Use the custom assert_equal method to check if 1 + 1 equals 2
