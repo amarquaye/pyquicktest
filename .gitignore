@@ -139,6 +139,7 @@ venv.bak/
 /site
 
 # Pyquicktest test files
+tests/
 test*
 
 # mypy
