@@ -99,6 +99,13 @@ class TestCase:
             if message is None:
                 message = f"Assertion failed: {tuple1} is not the same as {tuple2}"
             raise AssertionError(message)
+        
+    def assertTupleNotEqual(self, tuple1:tuple, tuple2:tuple, message=None):
+        """Confirm the inequality of two tuples"""
+        if tuple1 == tuple2:
+            if message is None:
+                message = f"Assertion failed: {tuple1} is the same as {tuple2}"
+            raise AssertionError(message)
 
 
 
